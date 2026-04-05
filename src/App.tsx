@@ -122,14 +122,14 @@ const About = () => (
           </div>
           <div className="absolute -bottom-6 -right-6 glass-card p-6 rounded-2xl max-w-[240px]">
             <h4 className="font-bold text-yume-purple mb-2">Creative Ecosystem</h4>
-            <p className="text-sm text-gray-600">Mendorong pertumbuhan talenta digital serta menciptakan ruang kolaborasi yang inspiratif.</p>
+            <p className="text-sm text-gray-600">Fostering digital talent growth and creating an inspiring collaborative space.</p>
           </div>
         </div>
         
         <div>
           <h2 className="font-display text-4xl font-bold mb-6">What is Yume Archive?</h2>
           <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-            Yume Archive adalah komunitas kreatif yang mewadahi designer, artist, dan AMV/GMV creator untuk berkumpul, berbagi karya, serta membangun koneksi dalam satu ekosistem yang kolaboratif.
+            Yume Archive is a creative community that brings together designers, artists, and AMV/GMV creators to gather, share their work, and build connections within a collaborative ecosystem.
           </p>
           
           <div className="grid grid-cols-2 gap-4">
@@ -155,25 +155,25 @@ const Features = () => {
   const features = [
     {
       title: "Showcase Artwork",
-      desc: "Menampilkan hasil karya sebagai bentuk ekspresi dan portofolio terbaikmu.",
+      desc: "Display your work as a form of expression and your best portfolio.",
       icon: <Palette className="text-yume-purple" />,
       color: "bg-purple-50"
     },
     {
       title: "Collaboration",
-      desc: "Membuka peluang kerja sama antar kreator dari berbagai latar belakang skill.",
+      desc: "Open up collaboration opportunities among creators from various skill backgrounds.",
       icon: <Share2 className="text-blue-500" />,
       color: "bg-blue-50"
     },
     {
       title: "Sharing Resource",
-      desc: "Berbagi asset, referensi, dan inspirasi untuk tumbuh bersama komunitas.",
+      desc: "Share assets, references, and inspiration to grow together as a community.",
       icon: <Sparkles className="text-amber-500" />,
       color: "bg-amber-50"
     },
     {
       title: "Community Interaction",
-      desc: "Membangun komunikasi aktif, diskusi, dan engagement melalui event seru.",
+      desc: "Build active communication, discussions, and engagement through exciting events.",
       icon: <MessageSquare className="text-yume-pink" />,
       color: "bg-pink-50"
     }
@@ -184,7 +184,7 @@ const Features = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl font-bold mb-4">What We Do</h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">Sebagai komunitas kreatif, Yume Archive menghadirkan berbagai aktivitas yang mendukung perkembangan anggotanya.</p>
+          <p className="text-gray-500 max-w-2xl mx-auto">As a creative community, Yume Archive offers various activities that support the growth of its members.</p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -214,42 +214,40 @@ const ArtistsPreview = () => {
     { name: "Yuki", role: "AMV Creator", img: "https://picsum.photos/seed/art3/400/400" },
     { name: "Mika", role: "Graphic Artist", img: "https://picsum.photos/seed/art4/400/400" },
     { name: "Ken", role: "Video Editor", img: "https://picsum.photos/seed/art5/400/400" },
-    { name: "Hana", role: "Digital Painter", img: "https://picsum.photos/seed/art6/400/400" }
+    { name: "Hana", role: "Digital Painter", img: "https://picsum.photos/seed/art6/400/400" },
+    { name: "Aoi", role: "3D Artist", img: "https://picsum.photos/seed/art7/400/400" },
+    { name: "Ren", role: "Animator", img: "https://picsum.photos/seed/art8/400/400" }
   ];
 
   return (
     <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
-        <div>
-          <h2 className="font-display text-4xl font-bold mb-2">Our Artists</h2>
-          <p className="text-gray-500">Meet the creative minds behind the archive.</p>
-        </div>
-        <button className="text-yume-purple font-bold flex items-center gap-2 hover:gap-3 transition-all">
-          View All Artists <ArrowRight size={18} />
-        </button>
+      <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+        <h2 className="font-display text-4xl font-bold mb-2">Our Artists</h2>
+        <p className="text-gray-500">Meet the creative minds behind the archive.</p>
       </div>
-      
-      <div className="flex gap-6 px-6 overflow-x-auto pb-8 no-scrollbar">
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-6 max-w-5xl mx-auto">
         {artists.map((a, i) => (
-          <motion.div 
+          <motion.div
             key={i}
-            className="flex-shrink-0 w-64 group"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.05 }}
+            className="group relative"
           >
-            <div className="aspect-[3/4] rounded-3xl overflow-hidden mb-4 relative">
-              <img 
-                src={a.img} 
-                alt={a.name} 
+            <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
+              <img
+                src={a.img}
+                alt={a.name}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                <button className="w-full py-2 bg-white/20 backdrop-blur-md text-white rounded-xl text-sm font-bold border border-white/30">
-                  View Profile
-                </button>
-              </div>
             </div>
-            <h4 className="font-bold text-lg">{a.name}</h4>
-            <p className="text-sm text-gray-400">{a.role}</p>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-yume-dark/90 via-yume-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+              <h4 className="font-bold text-white text-sm">{a.name}</h4>
+              <p className="text-white/70 text-xs">{a.role}</p>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -272,7 +270,7 @@ const GalleryPreview = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl font-bold mb-4">Gallery Showcase</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">Kumpulan karya terbaik dari para kreator Yume Archive.</p>
+          <p className="text-gray-400 max-w-2xl mx-auto">A collection of the best works from Yume Archive creators.</p>
         </div>
         
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
@@ -318,10 +316,10 @@ const WhyJoin = () => (
         <h2 className="font-display text-4xl font-bold mb-8">Why Join Us?</h2>
         <div className="space-y-8">
           {[
-            { title: "Improve Skills", desc: "Meningkatkan skill melalui exposure karya dan feedback dari sesama kreator." },
-            { title: "Get Feedback", desc: "Dapatkan kritik membangun untuk terus berkembang dalam bidang kreatifmu." },
-            { title: "Find Friends", desc: "Temukan teman dengan hobi dan passion yang sama dalam lingkungan yang suportif." },
-            { title: "Collaboration", desc: "Membuka peluang kolaborasi dan project bersama kreator hebat lainnya." }
+            { title: "Improve Skills", desc: "Enhance your skills through work exposure and feedback from fellow creators." },
+            { title: "Get Feedback", desc: "Receive constructive criticism to continue growing in your creative field." },
+            { title: "Find Friends", desc: "Find friends with similar hobbies and passions in a supportive environment." },
+            { title: "Collaboration", desc: "Open up collaboration opportunities and projects with other great creators." }
           ].map((item, i) => (
             <div key={i} className="flex gap-6 group">
               <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center font-display font-bold text-yume-purple group-hover:bg-yume-purple group-hover:text-white transition-colors">
@@ -365,7 +363,7 @@ const CommunityCTA = () => (
           Join Our <br /> Creative Space
         </h2>
         <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
-          Bergabunglah dan jadi bagian dari komunitas kreatif yang terus berkembang. Ekspresikan dirimu bersama ribuan kreator lainnya.
+          Join and become part of a continuously growing creative community. Express yourself alongside thousands of other creators.
         </p>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
           <a 
@@ -388,25 +386,78 @@ const CommunityCTA = () => (
 );
 
 const Footer = () => (
-  <footer className="py-12 border-t border-gray-100">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-yume-dark rounded-lg flex items-center justify-center text-white font-bold">Y</div>
-          <span className="font-display font-bold text-xl tracking-tight">YumeArchive</span>
+  <footer className="py-16 bg-yume-dark text-white relative overflow-hidden">
+    {/* Decorative background elements */}
+    <div className="absolute top-0 left-1/4 w-64 h-64 bg-yume-purple/10 rounded-full blur-3xl" />
+    <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-yume-pink/10 rounded-full blur-3xl" />
+    
+    <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="grid md:grid-cols-4 gap-12 mb-12">
+        {/* Brand */}
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-10 h-10 bg-gradient-to-br from-yume-purple to-yume-pink rounded-xl flex items-center justify-center text-white font-bold text-lg">Y</div>
+            <span className="font-display font-bold text-2xl tracking-tight">YumeArchive</span>
+          </div>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+            A creative community for designers, artists, and AMV/GMV creators to collaborate, share, and grow together since 2021.
+          </p>
         </div>
-        <div className="flex gap-8 text-sm font-medium text-gray-500">
-          <a href="#" className="hover:text-yume-purple transition-colors">Twitter</a>
-          <a href="#" className="hover:text-yume-purple transition-colors">Instagram</a>
-          <a href="#" className="hover:text-yume-purple transition-colors">YouTube</a>
-          <a href="#" className="hover:text-yume-purple transition-colors">Discord</a>
+
+        {/* Quick Links */}
+        <div>
+          <h4 className="font-bold text-lg mb-4">Quick Links</h4>
+          <ul className="space-y-2 text-sm">
+            <li><a href="#home" className="text-gray-400 hover:text-yume-purple transition-colors">Home</a></li>
+            <li><a href="#about" className="text-gray-400 hover:text-yume-purple transition-colors">About</a></li>
+            <li><a href="#features" className="text-gray-400 hover:text-yume-purple transition-colors">Features</a></li>
+            <li><a href="#gallery" className="text-gray-400 hover:text-yume-purple transition-colors">Gallery</a></li>
+          </ul>
+        </div>
+
+        {/* Connect */}
+        <div>
+          <h4 className="font-bold text-lg mb-4">Connect With Us</h4>
+          <div className="flex gap-3">
+            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yume-purple transition-colors">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yume-purple transition-colors">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yume-purple transition-colors">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.594 4.933c-.12-.093-.254-.167-.396-.218a1.003 1.003 0 0 0-.861.072c-2.516 1.438-5.353 2.08-8.437 1.92-3.084-.16-5.784-1.387-8.098-3.68a1 1 0 0 0-1.707.707v6.999c0 3.562 1.292 6.626 3.876 9.192 2.584 2.566 5.652 3.858 9.206 3.875 3.554.017 6.626-1.258 9.215-3.816 2.589-2.558 3.883-5.622 3.883-9.192V7.2a1 1 0 0 0-.375-.783l-6.306-4.484zm-1.594 2.467v3.6a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-3.6c0-.265.215-.48.48-.48h4.04c.265 0 .48.215.48.48z"/></svg>
+            </a>
+            <a href="https://discord.gg/qHh7PpwW76" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yume-purple transition-colors">
+              <Discord size={20} />
+            </a>
+          </div>
+          <p className="text-gray-400 text-sm mt-4">Join our Discord community</p>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 font-medium">
+
+      {/* Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-t border-white/10">
+        {[
+          { value: "1,200+", label: "Active Members" },
+          { value: "500+", label: "Artworks Shared" },
+          { value: "50+", label: "Events Hosted" },
+          { value: "Since 2021", label: "Creating Together" }
+        ].map((stat, i) => (
+          <div key={i} className="text-center">
+            <div className="font-display font-bold text-3xl text-gradient mb-1">{stat.value}</div>
+            <div className="text-gray-400 text-sm">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/10 text-xs text-gray-400 font-medium">
         <p>© 2021-2026 Yume Archive. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:underline">Privacy Policy</a>
-          <a href="#" className="hover:underline">Terms of Service</a>
+          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" className="hover:text-white transition-colors">Contact</a>
         </div>
       </div>
     </div>
