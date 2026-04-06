@@ -1,0 +1,16 @@
+{
+  "name": "Yume Archive",
+  "short_name": "Yume",
+  "description": "Creative Community + Visual Identity Platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D0D0D",
+  "theme_color": "#E8B4D3",
+  "icons": [
+    {
+      "src": "https://github.com/ngetikin/yumearchive/blob/main/Yumearchive/icon-logo-yumearchive.png?raw=true",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

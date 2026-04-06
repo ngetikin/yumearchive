@@ -1,146 +1,84 @@
-# Yume Archive - Project Context
+# Yume Archive
 
 ## Project Overview
 
-**Yume Archive** is a creative community website for designers, artists, and AMV/GMV creators. Established in 2021, it provides a collaborative ecosystem where creative individuals can showcase their work, share resources, and connect with fellow creators.
+**Yume Archive** is a single-page marketing/portfolio website for a creative digital community hub established in 2021. It serves as a landing page for an Indonesian-based creative collective of designers, digital artists, and video editors (AMV/GMV creators). The site showcases their gallery, community artists, commission pricing, and provides links to their Discord and Instagram.
 
 ### Tech Stack
 
-| Category | Technology |
-|----------|------------|
-| **Framework** | React 19 |
-| **Language** | TypeScript 5.8 |
-| **Build Tool** | Vite 6.2 |
-| **Styling** | Tailwind CSS 4.1 |
-| **Animations** | Motion (motion.dev) |
-| **Icons** | Lucide React |
-| **AI Integration** | Google Generative AI (`@google/genai`) |
+- **Framework:** React 19
+- **Build Tool:** Vite 6
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion (`motion/react`)
+- **Icons:** Lucide React
+- **Runtime:** Node.js
 
-### Architecture
+## Project Structure
 
-- **Single-page application (SPA)** with smooth scroll navigation
-- **Component-based structure** in `src/App.tsx` (currently monolithic)
-- **Custom theme** with branded colors (yume-purple, yume-pink, yume-dark, yume-light)
-- **Responsive design** with mobile-first approach
-- **Animation-rich** UI using Framer Motion-like syntax via `motion/react`
-
-### Key Sections
-
-1. **Hero** - Landing section with animated illustration
-2. **About** - Community introduction and stats
-3. **Features** - Core offerings (Showcase, Collaboration, Resources, Interaction)
-4. **Artists Preview** - Horizontal scrollable artist cards
-5. **Gallery** - Masonry-style work showcase
-6. **Why Join** - Benefits of community membership
-7. **Community CTA** - Discord call-to-action
-
----
+```
+yumearchive/
+├── src/
+│   ├── App.tsx          # Main application component (entire landing page)
+│   ├── constants.ts     # Asset URLs (logo, artists, gallery) and pricing data
+│   ├── main.tsx         # React entry point
+│   └── index.css        # Global styles
+├── public/              # Static assets (artist avatars, art images)
+├── index.html           # HTML entry point
+├── vite.config.ts       # Vite configuration with React + Tailwind plugins
+├── tsconfig.json        # TypeScript config (ES2022, no emit, path aliases)
+├── package.json         # Dependencies and scripts
+└── .env.example         # Environment variable template
+```
 
 ## Building and Running
 
 ### Prerequisites
 
-- Node.js (version compatible with the project dependencies)
-- npm
+- Node.js
+- A Gemini API key (set via `GEMINI_API_KEY` in `.env.local`) — though the current app does not appear to actively use Gemini AI features.
 
-### Development
+### Commands
 
-```bash
-# Install dependencies
-npm install
-
-# Start development server (port 3000, accessible on all interfaces)
-npm run dev
-```
-
-### Production
-
-```bash
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Clean build artifacts
-npm run clean
-```
-
-### Code Quality
-
-```bash
-# Type check (no emit)
-npm run lint
-```
+| Command | Description |
+|---------|-------------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server on `http://localhost:3000` |
+| `npm run build` | Build for production (outputs to `dist/`) |
+| `npm run preview` | Preview production build locally |
+| `npm run clean` | Remove `dist/` directory |
+| `npm run lint` | Type-check with TypeScript (`tsc --noEmit`) |
 
 ### Environment Variables
 
-Create a `.env.local` file with:
+- `GEMINI_API_KEY` — Gemini API key (injected by AI Studio at runtime)
+- `APP_URL` — The hosted URL of the app (injected by AI Studio at runtime)
 
-```
-GEMINI_API_KEY=your_gemini_api_key_here
-```
+Configure these in a `.env.local` file for local development.
 
----
+## Key Features
+
+- **Hero Section** — Animated landing section with floating moon/cloud elements and CTA buttons
+- **About Section** — Vision/mission cards with image gallery grid
+- **Core Focus** — Three pillars: Graphic Design, Digital Art, AMV/GMV
+- **Gallery** — Masonry-style image grid with hover overlays (24 artworks loaded from GitHub)
+- **Artists** — Grid of community artist avatars with names
+- **What We Do** — Activity cards (Showcase, Collaboration, Resources, Community, Events)
+- **Commission** — Pricing cards for art commissions (Headshot, Bust-up, Half Body, Full Body, Chibi) with Terms of Service
+- **CTA Section** — Discord and Instagram join/follow links
+- **Footer** — Navigation links and copyright
 
 ## Development Conventions
 
-### Code Style
-
-- **TypeScript**: Strict typing with `noEmit` for type checking
-- **React**: Functional components with hooks, JSX syntax
-- **Naming**: PascalCase for components, camelCase for variables/functions
-- **Imports**: Organized with `@/` alias pointing to project root
-
-### Styling
-
-- **Tailwind CSS v4** with custom theme configuration in `index.css`
-- **Custom utilities**: `.glass-card`, `.text-gradient`
-- **Color palette**:
-  - `--color-yume-purple`: `#8b5cf6`
-  - `--color-yume-pink`: `#ec4899`
-  - `--color-yume-dark`: `#0f172a`
-  - `--color-yume-light`: `#f8fafc`
-
-### Component Patterns
-
-- Components are defined as functional components within `App.tsx`
-- Motion animations use `motion` from `motion/react`
-- Icons from `lucide-react` with consistent sizing
-- Responsive classes use Tailwind's breakpoint prefixes (`md:`, `lg:`)
-
-### File Structure
-
-```
-yumearchive/
-├── src/
-│   ├── App.tsx          # Main application component
-│   ├── main.tsx         # React entry point
-│   └── index.css        # Global styles & Tailwind config
-├── index.html           # HTML template
-├── package.json         # Dependencies & scripts
-├── tsconfig.json        # TypeScript configuration
-├── vite.config.ts       # Vite configuration
-└── metadata.json        # Project metadata
-```
-
-### Git
-
-- Standard `.gitignore` excludes `node_modules/`, `dist/`, `.env*`
-- Keep `.env.example` tracked for environment variable documentation
-
----
-
-## External Resources
-
-- **Discord Community**: https://discord.gg/qHh7PpwW76
-- **Images**: Uses Picsum for placeholders and external CDN for assets
-- **Fonts**: Google Fonts (Inter, Outfit, JetBrains Mono)
-
----
+- **Path Aliases:** `@/*` maps to the project root (configured in `tsconfig.json` and `vite.config.ts`)
+- **Module System:** ES Modules (`"type": "module"`)
+- **JSX:** `react-jsx` transform
+- **Animations:** Uses Framer Motion's `motion` components with `whileInView` and `viewport={{ once: true }}` for scroll-triggered animations
+- **Styling:** Tailwind CSS utility classes with custom design tokens (e.g., `glass`, `gradient-bg`, `dreamy-glow` — likely defined in `index.css`)
+- **External Assets:** Gallery images and artist avatars are loaded from a GitHub repository (`github.com/ngetikin/yumearchive`)
 
 ## Notes
 
-- HMR can be disabled via `DISABLE_HMR=true` environment variable (for AI Studio compatibility)
-- Images use `referrerPolicy="no-referrer"` for external resources
-- The app is configured to run on `0.0.0.0:3000` for network accessibility
+- This project was scaffolded via **Google AI Studio** (as indicated by the README and Vite config comments about AI Studio-specific behavior like `DISABLE_HMR`).
+- The app is primarily a static landing page — all data (assets, pricing) is hardcoded in `constants.ts`.
+- HMR is conditionally disabled when `DISABLE_HMR=true` to prevent flickering during AI agent edits.
